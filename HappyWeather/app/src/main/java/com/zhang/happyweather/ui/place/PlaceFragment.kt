@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.zhang.happyweather.MainActivity
 import com.zhang.happyweather.databinding.FragmentPlaceBinding
 import com.zhang.happyweather.ui.weather.WeatherActivity
 
@@ -43,7 +44,7 @@ class PlaceFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (viewModel.isPlaceSaved()) {
+        if (activity is MainActivity && viewModel.isPlaceSaved()) {
             val place = viewModel.getSavedPlace()
             val intent = Intent(context, WeatherActivity::class.java).apply {
                 putExtra("location_lng", place.location.lng)
@@ -52,6 +53,7 @@ class PlaceFragment : Fragment() {
             }
             startActivity(intent)
             activity?.finish()
+            Log.d("edlog", "读取了天气数据")
             return
         }
 

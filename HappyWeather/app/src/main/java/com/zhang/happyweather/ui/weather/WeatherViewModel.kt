@@ -5,6 +5,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.zhang.happyweather.logic.Repository
 import com.zhang.happyweather.logic.model.Location
+import com.zhang.happyweather.logic.model.Place
 
 /**
  * @author : zyw
@@ -29,4 +30,5 @@ class WeatherViewModel : ViewModel() {
         locationLiveData.value = Location(lng, lat)
     }
 
+    fun savePlace(place: Place) = Repository.savePlace(place)
 }

@@ -16,6 +16,7 @@ object PlaceDao {
 
     fun savePlace(place: Place) {
         sharedPreferences().edit {
+            Log.d("edlog","存储了天气数据")
             putString("place", Gson().toJson(place))
         }
     }
