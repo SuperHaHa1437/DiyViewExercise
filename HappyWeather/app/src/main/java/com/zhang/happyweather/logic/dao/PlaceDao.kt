@@ -1,6 +1,7 @@
 package com.zhang.happyweather.logic.dao
 
 import android.content.Context
+import android.util.Log
 import androidx.core.content.edit
 import com.google.gson.Gson
 import com.zhang.happyweather.HappyWeatherApplication

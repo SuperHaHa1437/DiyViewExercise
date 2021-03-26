@@ -16,7 +16,7 @@ import com.zhang.happyweather.ui.weather.WeatherActivity
  * @function :
  * @date : 3/25/21
  */
-class PlaceAdapter(private val fragment: Fragment, private val placeList: List<Place>) :
+class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: List<Place>) :
     RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -36,6 +36,7 @@ class PlaceAdapter(private val fragment: Fragment, private val placeList: List<P
                 putExtra("place_name", place.name)
             }
             fragment.startActivity(intent)
+            fragment.viewModel.savePlace(place)
             fragment.activity?.finish()
         }
         return holder
