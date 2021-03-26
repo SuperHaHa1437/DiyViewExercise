@@ -16,6 +16,12 @@ object HappyWeatherNetwork {
 
     private val placeService = ServiceCreator.create<PlaceServie>()
 
+    private val weatherService = ServiceCreator.create<WeatherService>()
+
+    suspend fun getDailyWeather(lng: String, lat: String) = weatherService.getDailyWeather(lng, lat).await()
+
+    suspend fun getRealtimeWeather(lng: String, lat: String) = weatherService.getRealtimeWeather(lng, lat).await()
+
     suspend fun searchPlace(query: String) = placeService.searchPlaces(query).await()
 
     //这里的await()函数是自定义的,属于扩展函数,并不是指协程的await()函数,只是为了表示作用都是为获取结果,所以定义名为await(),也可自定义比如getResult()
@@ -31,6 +37,7 @@ object HappyWeatherNetwork {
                 override fun onFailure(call: Call<T>, t: Throwable) {
                     continuation.resumeWithException(t)
                 }
+
             })
         }
     }
